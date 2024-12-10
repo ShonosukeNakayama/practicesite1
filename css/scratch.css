@@ -1,0 +1,38 @@
+body {
+    /* background-image: url(../images/cool-background\ \(1\).jpeg); */
+    /* background-color: rgb(242, 251, 255); */
+    /* background-image: url(../images/background1.jpeg); */
+    background-image: url(../images/cool-background\ \(4\).jpeg);
+}
+
+a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.heading {
+    color: rgb(240, 102, 166);
+    text-align: center;
+    font-family: cursive;
+    font-size: 26px;
+    background-image: url(../images/unpredictable1.jpeg);
+    border: 5px solid rgb(28, 26, 28)    
+}
+
+.bulletpoints{
+    font-family: Arial, Helvetica, sans-serif;
+    font: bold;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.tablecontent {
+    font-size: 24px;
+    
+}
+
+.maincontent {
+    font-size: 18px;
+
+}

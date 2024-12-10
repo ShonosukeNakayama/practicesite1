@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Study Buddy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background: #4caf50;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+
+        section {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #pomodoro, #music, #study-room {
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4caf50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .study-room {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .room {
+            flex: 1 1 calc(50% - 10px);
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .room:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Virtual Study Buddy</h1>
+    </header>
+    <section>
+        <div id="pomodoro">
+            <h2>Pomodoro Timer</h2>
+            <p>Time Remaining: <span id="timer">25:00</span></p>
+            <button onclick="startPomodoro()">Start</button>
+            <button onclick="resetPomodoro()">Reset</button>
+        </div>
+        <div id="music">
+            <h2>Study Music Playlist</h2>
+            <select id="musicSelect">
+                <option value="https://www.bensound.com/bensound-music/bensound-creativeminds.mp3">Creative Minds</option>
+                <option value="https://www.bensound.com/bensound-music/bensound-sunny.mp3">Sunny</option>
+                <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">Slow Motion</option>
+            </select>
+            <button onclick="playMusic()">Play Music</button>
+            <audio id="audioPlayer" controls></audio>
+        </div>
+        <div id="study-room">
+            <h2>Collaborative Study Rooms</h2>
+            <div class="study-room">
+                <div class="room" onclick="joinRoom('Room 1')">Room 1</div>
+                <div class="room" onclick="joinRoom('Room 2')">Room 2</div>
+                <div class="room" onclick="joinRoom('Room 3')">Room 3</div>
+                <div class="room" onclick="joinRoom('Room 4')">Room 4</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Pomodoro Timer
+        let pomodoroTime = 25 * 60; // 25 minutes in seconds
+        let timerInterval;
+
+        function startPomodoro() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (pomodoroTime > 0) {
+                    pomodoroTime--;
+                    const minutes = Math.floor(pomodoroTime / 60);
+                    const seconds = pomodoroTime % 60;
+                    document.getElementById('timer').innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                } else {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Take a break!");
+                }
+            }, 1000);
+        }
+
+        function resetPomodoro() {
+            clearInterval(timerInterval);
+            pomodoroTime = 25 * 60;
+            document.getElementById('timer').innerText = "25:00";
+        }
+
+        // Study Music Playlist
+        function playMusic() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const selectedMusic = document.getElementById('musicSelect').value;
+            audioPlayer.src = selectedMusic;
+            audioPlayer.play();
+        }
+
+        // Collaborative Study Rooms
+        function joinRoom(roomName) {
+            alert(`You've joined ${roomName}. Stay focused!`);
+        }
+    </script>
+</body>
+</html>
+
